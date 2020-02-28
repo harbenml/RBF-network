@@ -54,6 +54,7 @@ dependencies:
   - numpy=1.18.1=py37h7241aed_0
   - numpy-base=1.18.1=py37h6575580_1
   - openssl=1.1.1d=h1de35cc_4
+  - pandas=1.0.1=py37h6c726b0_0
   - pandoc=2.9.2=0
   - pandocfilters=1.4.2=py_1
   - parso=0.6.1=py_0
@@ -67,6 +68,7 @@ dependencies:
   - pyrsistent=0.15.7=py37h0b31af3_0
   - python=3.7.6=h359304d_2
   - python-dateutil=2.8.1=py_0
+  - pytz=2019.3=py_0
   - pyyaml=5.3=py37h0b31af3_0
   - pyzmq=18.1.1=py37h0a44026_0
   - readline=7.0=h1de35cc_5
