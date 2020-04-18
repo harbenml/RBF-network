@@ -1,0 +1,2 @@
+# Exclude jupyter notebooks (jupytext)
+*.ipynb
