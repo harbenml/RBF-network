@@ -142,7 +142,6 @@ X.shape
 phi.shape
 
 
-# +
 def recursive_least_squares(x, y, theta_prev, P_prev, forgetting_factor=1):
     y_hat = x.T @ theta_prev
     error = y - y_hat
@@ -150,15 +149,6 @@ def recursive_least_squares(x, y, theta_prev, P_prev, forgetting_factor=1):
     theta = theta_prev + correction@error
     P = (np.eye(P_prev.shape[0])-correction@x.T)@P_prev/forgetting_factor
     return theta, P
-
-# function [theta_new, P_new] = rls(x, y, theta_old, P_old, lambda)
-
-# y_hat = x'*theta_old;                               % model output with old parameter vector
-# e = y - y_hat;                                      % error
-# gamma = P_old*x/(x'*P_old*x+lambda);                % update for gamma
-# theta_new = theta_old + gamma*e;                    % update for parameter vector
-# P_new = (eye(size(P_old))-gamma*x')*P_old/lambda;   % update for covariance matrix
-
 
 
 # +
@@ -176,7 +166,6 @@ for i in range(30):
     
     y_sim = example_process(x_sim, sigma_noise=0)
 
-#     set_trace()
     a = np.append(a, np.random.rand(1))
     x_sim_plot = np.append(x_sim_plot, x_sim)
     y_sim_plot = np.append(y_sim_plot, y_sim)
@@ -198,7 +187,6 @@ for i in range(30):
     time.sleep(0.1)
 
 plt.close()
-#     print(theta)
 
 # +
 import matplotlib.pylab as plt
