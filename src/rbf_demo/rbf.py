@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def normalize_data(data):
     mean_values = np.mean(data, axis=0)
     std_values = np.std(data, axis=0)
