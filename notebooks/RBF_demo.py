@@ -119,7 +119,7 @@ w_hat = np.linalg.pinv(X)@y
 # calculate model output
 y_hat = X@w_hat
 
-# NRMSE
+# RMSE
 np.sqrt(np.mean( (y_hat - y)**2 ))
 # -
 
