@@ -1,17 +1,37 @@
+from dataclasses import dataclass, field
 from typing import List, NamedTuple, Tuple
 
 import numpy as np
 
 
-class Partitioning(NamedTuple):
+@dataclass
+class RBF:
+    """Radial basis function parameters """
+
+    center: np.ndarray
+    std: np.array
+
+
+@dataclass
+class Partitioning:
     """Holds the parameters of the radial basis functions (rbf)
     
     rbf_centers (np.ndarray): center coordinate of each rbf
     rbf_std (np.ndarray): standard deviations to construct the rbfs
     """
 
-    rbf_centers: np.ndarray
-    rbf_std: np.ndarray
+    rbfs: List[RBF]
+
+
+# class Partitioning(NamedTuple):
+#     """Holds the parameters of the radial basis functions (rbf)
+
+#     rbf_centers (np.ndarray): center coordinate of each rbf
+#     rbf_std (np.ndarray): standard deviations to construct the rbfs
+#     """
+
+#     rbf_centers: np.ndarray
+#     rbf_std: np.ndarray
 
 
 class Model:
@@ -28,3 +48,8 @@ class Model:
         w = self.linear_params
         y = X @ w
         return y
+
+
+if __name__ == "__main__":
+    parameters = Partitioning(0, 0)
+    print(parameters)
