@@ -1,43 +1,38 @@
-from dataclasses import dataclass, field
-from typing import List, NamedTuple, Tuple
+from dataclasses import dataclass
+from dataclasses import field
+from typing import List
+from typing import Tuple
 
 import numpy as np
 
+from rbf_kernel import calculate_radial_basis_function_matrix
+from rbf_kernel import normalize_rbf
+
 
 @dataclass
-class RBF:
-    """Radial basis function parameters """
+class RBFParameters:
+    """Radial basis function parameters
+    
+    rbf_centers (np.ndarray): center coordinate of each rbf
+    rbf_std (np.ndarray): standard deviations to construct the rbfs
+    """
 
     center: np.ndarray
     std: np.array
 
 
 @dataclass
-class Partitioning:
-    """Holds the parameters of the radial basis functions (rbf)
-    
-    rbf_centers (np.ndarray): center coordinate of each rbf
-    rbf_std (np.ndarray): standard deviations to construct the rbfs
-    """
+class NonlinearParameters:
+    """Holds the parameters of the radial basis functions (rbf) """
 
-    rbfs: List[RBF]
-
-
-# class Partitioning(NamedTuple):
-#     """Holds the parameters of the radial basis functions (rbf)
-
-#     rbf_centers (np.ndarray): center coordinate of each rbf
-#     rbf_std (np.ndarray): standard deviations to construct the rbfs
-#     """
-
-#     rbf_centers: np.ndarray
-#     rbf_std: np.ndarray
+    rbfs: List[RBFParameters]
+    smoothness: float
 
 
 class Model:
     def __init__(self):
         self.linear_params: np.ndarray
-        self.nonlin_params: Partitioning
+        self.nonlin_params: NonlinearParameters
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
         # least squares estimation
