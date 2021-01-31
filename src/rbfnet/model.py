@@ -4,7 +4,9 @@ from typing import List
 from typing import Tuple
 
 import numpy as np
+import matplotlib.pyplot as plt
 
+from example_process import polynomial
 from rbf_kernel import calculate_radial_basis_function_matrix
 from rbf_kernel import normalize_rbf
 
@@ -61,5 +63,17 @@ class Model:
 
 
 if __name__ == "__main__":
-    parameters = Partitioning(0, 0)
-    print(parameters)
+
+    N = 100
+    number_of_neurons = 5
+    smoothness = 1.5
+
+    stds = np.ones(number_of_neurons) * smoothness / 10
+    centers = np.linspace(0, 1, number_of_neurons)
+
+    x = np.array([np.linspace(0, 1, N)])
+    y = polynomial(x, sigma_noise=0.05)
+
+    plt.plot(x.T, y.T, ".")
+    plt.show()
+
