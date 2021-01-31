@@ -1,5 +1,6 @@
 {
     "python.linting.pylintEnabled": false,
     "python.linting.mypyEnabled": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "python.pythonPath": "/Users/benjamin/opt/anaconda3/envs/RBF_demo/bin/python"
 }
