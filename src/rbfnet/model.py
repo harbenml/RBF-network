@@ -17,8 +17,8 @@ class RBFParameters:
     rbf_std (np.ndarray): standard deviations to construct the rbfs
     """
 
-    center: np.ndarray
-    std: np.array
+    centers: np.ndarray
+    stds: np.array
 
 
 @dataclass
@@ -27,6 +27,21 @@ class NonlinearParameters:
 
     rbfs: List[RBFParameters]
     smoothness: float
+
+
+class Partitioning:
+    """Class that holds the methods to calculate the neural network partitions  """
+
+    @staticmethod
+    def get_regression_matrix(
+        input: np.ndarray, params: NonlinearParameters
+    ) -> np.ndarray:
+        num_inputs, num_rbfs = input.shape[0], len(params.rbfs)
+        membership_fcns = np.zeros(num_inputs, num_rbfs)
+        for i, rbf in enumerate(params.rbfs):
+            membership_fcns[:, i] = calculate_radial_basis_function_matrix(
+                input, rbf.centers, rbf.stds
+            )
 
 
 class Model:
