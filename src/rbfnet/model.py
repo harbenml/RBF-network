@@ -27,7 +27,7 @@ class RBFParameters:
 class NonlinearParameters:
     """Holds the parameters of the radial basis functions (rbf) """
 
-    rbfs: List[RBFParameters]
+    rbfs: RBFParameters
     smoothness: float
 
 
@@ -74,6 +74,9 @@ if __name__ == "__main__":
     x = np.array([np.linspace(0, 1, N)])
     y = polynomial(x, sigma_noise=0.05)
 
-    plt.plot(x.T, y.T, ".")
-    plt.show()
+    x = x.T
+    y = y.T
+
+    rbf_params = NonlinearParameters(RBFParameters(centers, stds), smoothness=1)
+    rbf_params
 
