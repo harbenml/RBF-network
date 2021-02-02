@@ -13,21 +13,10 @@ from rbf_kernel import normalize_rbf
 
 @dataclass
 class RBFParameters:
-    """Radial basis function parameters
-    
-    rbf_centers (np.ndarray): center coordinate of each rbf
-    rbf_std (np.ndarray): standard deviations to construct the rbfs
-    """
+    """Holds the parameters of the radial basis functions (rbf) """
 
     centers: np.ndarray
     stds: np.array
-
-
-@dataclass
-class NonlinearParameters:
-    """Holds the parameters of the radial basis functions (rbf) """
-
-    rbfs: RBFParameters
     smoothness: float
 
 
@@ -35,14 +24,12 @@ class Partitioning:
     """Class that holds the methods to calculate the neural network partitions  """
 
     @staticmethod
-    def get_regression_matrix(
-        input: np.ndarray, params: NonlinearParameters
-    ) -> np.ndarray:
-        num_inputs, num_rbfs = input.shape[0], len(params.rbfs)
+    def get_regression_matrix(input: np.ndarray, params: RBFParameters) -> np.ndarray:
+        num_inputs, num_rbfs = input.shape[0], len(params.centers)
         membership_fcns = np.zeros(num_inputs, num_rbfs)
-        for i, rbf in enumerate(params.rbfs):
+        for i in range(len(params.centers)):
             membership_fcns[:, i] = calculate_radial_basis_function_matrix(
-                input, rbf.centers, rbf.stds
+                input, params.centers, params.stds
             )
 
 
@@ -77,6 +64,6 @@ if __name__ == "__main__":
     x = x.T
     y = y.T
 
-    rbf_params = NonlinearParameters(RBFParameters(centers, stds), smoothness=1)
+    rbf_params = RBFParameters(centers, stds, smoothness=1)
     rbf_params
 
