@@ -1,9 +1,7 @@
 import numpy as np
 
 
-def calculate_radial_basis_function_matrix(
-    x: np.ndarray, centers: np.ndarray, stds: np.ndarray
-) -> np.ndarray:
+def calculate_rbf(x: np.ndarray, centers: np.ndarray, stds: np.ndarray) -> np.ndarray:
     """Calculates the radial basis functions (RBFs) given the parameters for each
        neuron.
 
