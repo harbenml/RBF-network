@@ -26,9 +26,7 @@ class Partitioning:
     @staticmethod
     def get_regression_matrix(input: np.ndarray, params: RBFParameters) -> np.ndarray:
         num_samples, num_rbfs = input.shape[0], len(params.centers)
-        membership_fcns = np.zeros(num_samples, num_rbfs)
-        for i in range(num_rbfs):
-            membership_fcns[:, i] = calculate_rbf(input, params.centers, params.stds)
+        membership_fcns = calculate_rbf(input, params.centers, params.stds)
         return membership_fcns
 
 
