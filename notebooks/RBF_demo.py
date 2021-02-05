@@ -13,12 +13,25 @@
 #     name: python3
 # ---
 
-# %reload_ext autoreload
+# %load_ext autoreload
 # %autoreload 2
 # %matplotlib inline
 
 import matplotlib.pyplot as plt
 import numpy as np
+
+# %run ../src/rbfnet/model.py
+
+plt.plot(x, phi)
+plt.show()
+
+np.sum(phi, axis=0)
+
+
+
+
+
+
 
 # +
 N = 100
