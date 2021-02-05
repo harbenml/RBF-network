@@ -27,7 +27,8 @@ class Partitioning:
     def get_regression_matrix(input: np.ndarray, params: RBFParameters) -> np.ndarray:
         num_samples, num_rbfs = input.shape[0], len(params.centers)
         membership_fcns = calculate_rbf(input, params.centers, params.stds)
-        return membership_fcns
+        phi = normalize_rbf(membership_fcns)
+        return phi
 
 
 class Model:
@@ -65,3 +66,6 @@ if __name__ == "__main__":
     print(rbf_params)
     phi = Partitioning.get_regression_matrix(x, rbf_params)
     print(phi.shape)
+
+    print(np.sum(phi, axis=0))
+
