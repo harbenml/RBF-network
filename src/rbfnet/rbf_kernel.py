@@ -27,11 +27,7 @@ def normalize_rbf(rbf_matrix):
     Returns:
         rbf_matrix_norm (np.ndarray): the normalized RBF values [#samples, #neurons]
     """
-    column_sum = np.sum(rbf_matrix, axis=-1)
-    rbf_matrix_norm = np.zeros(rbf_matrix.shape)
-    for i in range(rbf_matrix.shape[1]):
-        rbf_matrix_norm[:, i] = (
-            rbf_matrix[:, i] / column_sum
-        )  # TODO: is it possible to vectorize this?
+    column_sum = np.sum(rbf_matrix, axis=0)
+    rbf_matrix_norm = rbf_matrix / column_sum
     return rbf_matrix_norm
 
