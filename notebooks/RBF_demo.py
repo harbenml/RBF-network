@@ -22,6 +22,18 @@ import numpy as np
 
 # %run ../src/rbfnet/model.py
 
+mu.shape
+
+musum = np.sum(mu, axis=0)
+
+phi = mu/musum
+
+np.sum(phi, axis=0)
+
+phi[:,0]*100
+
+phi.shape
+
 plt.plot(x, phi)
 plt.show()
 
