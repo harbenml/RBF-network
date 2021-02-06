@@ -49,11 +49,11 @@ class Model:
 
 if __name__ == "__main__":
 
-    N = 100
+    N = 30
     number_of_neurons = 5
-    smoothness = 1.5
+    smoothness = 1
 
-    stds = np.ones(number_of_neurons) * smoothness / 10
+    stds = np.ones(number_of_neurons) * smoothness / 20
     centers = np.linspace(0, 1, number_of_neurons)
 
     x = np.array([np.linspace(0, 1, N)])
@@ -64,8 +64,11 @@ if __name__ == "__main__":
 
     rbf_params = RBFParameters(centers, stds, smoothness=1)
     print(rbf_params)
-    phi = Partitioning.get_regression_matrix(x, rbf_params)
-    print(phi.shape)
 
-    print(np.sum(phi, axis=0))
+    mu = calculate_rbf(x, centers, stds)
+
+    # phi = Partitioning.get_regression_matrix(x, rbf_params)
+    # print(phi.shape)
+
+    # print(np.sum(phi, axis=0))
 
