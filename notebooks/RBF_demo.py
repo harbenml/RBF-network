@@ -24,9 +24,19 @@ import numpy as np
 
 mu.shape
 
-musum = np.sum(mu, axis=0)
+mu.sum(axis=0)
+
+musum = mu.sum(axis=0)
 
 phi = mu/musum
+
+x = np.tile(np.r_[1:4], (5,1))
+x
+
+xsum = x.sum(axis=0)
+xsum
+
+x/xsum
 
 np.sum(phi, axis=0)
 
