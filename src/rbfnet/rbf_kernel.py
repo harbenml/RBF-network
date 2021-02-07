@@ -17,17 +17,17 @@ def calculate_rbf(x: np.ndarray, centers: np.ndarray, stds: np.ndarray) -> np.nd
     return rbf_matrix
 
 
-def normalize_rbf(rbf_matrix):
+def normalize_rbf(rbf_array):
     """Normalizes each rbf neuron with the sum of all neuron values to from a
        `partition of unity`. 
        
     Args:
-        rbf_matrix (np.ndarray): 2D numpy array containing the RBF values [#samples, #neurons]
+        rbf_array (np.ndarray): 2D numpy array containing the RBF values [#samples, #neurons]
 
     Returns:
-        rbf_matrix_norm (np.ndarray): the normalized RBF values [#samples, #neurons]
+        rbf_array_norm (np.ndarray): the normalized RBF values [#samples, #neurons]
     """
-    column_sum = np.sum(rbf_matrix, axis=0)
-    rbf_matrix_norm = rbf_matrix / column_sum
-    return rbf_matrix_norm
+    column_sum = np.c_[rbf_array.sum(axis=1)]
+    rbf_array_norm = rbf_array / column_sum
+    return rbf_array_norm
 
