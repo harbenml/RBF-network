@@ -33,16 +33,20 @@ phi = mu/musum
 x = np.tile(np.r_[1:4], (5,1))
 x
 
-xsum = x.sum(axis=0)
-xsum
+x = mu
 
-x/xsum
+xsum = np.c_[x.sum(axis=1)]
+
+y = x/xsum
+y.sum(axis=0)
 
 np.sum(phi, axis=0)
 
 phi[:,0]*100
 
 phi.shape
+
+phi.sum(axis=0)
 
 plt.plot(x, phi)
 plt.show()
