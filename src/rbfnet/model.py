@@ -49,7 +49,7 @@ class Model:
 
 if __name__ == "__main__":
 
-    N = 30
+    N = 100
     number_of_neurons = 5
     smoothness = 1
 
@@ -67,7 +67,7 @@ if __name__ == "__main__":
 
     mu = calculate_rbf(x, centers, stds)
 
-    # phi = Partitioning.get_regression_matrix(x, rbf_params)
+    phi = Partitioning.get_regression_matrix(x, rbf_params)
     # print(phi.shape)
 
     # print(np.sum(phi, axis=0))
