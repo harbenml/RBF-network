@@ -38,13 +38,21 @@ class Model:
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
         # least squares estimation
+        phi = self.get_regression_matrix(X)
         w_hat = np.linalg.pinv(X) @ y
         self.linear_params = w_hat
 
     def predict(self, X: np.ndarray) -> np.ndarray:
+        phi = self.get_regression_matrix(X)
         w = self.linear_params
         y = X @ w
         return y
+
+    def get_regression_matrix(self, input: np.ndarray) -> np.ndarray:
+        num_samples, num_rbfs = input.shape[0], len(self.rbf_params.centers)
+        membership_fcns = calculate_rbf(input, self.rbf_params)
+        phi = normalize_rbf(membership_fcns)
+        return phi
 
 
 if __name__ == "__main__":
