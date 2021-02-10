@@ -1,7 +1,9 @@
 import numpy as np
 
+from model import RBFParameters
 
-def calculate_rbf(x: np.ndarray, centers: np.ndarray, stds: np.ndarray) -> np.ndarray:
+
+def calculate_rbf(x: np.ndarray, params: RBFParameters) -> np.ndarray:
     """Calculates the radial basis functions (RBFs) given the parameters for each
        neuron.
 
@@ -13,6 +15,8 @@ def calculate_rbf(x: np.ndarray, centers: np.ndarray, stds: np.ndarray) -> np.nd
     Returns:
         rbf_matrix (np.ndarray): 2D numpy array containing the RBF values [#samples, #neurons]
     """
+    centers = params.centers
+    stds = params.stds * params.smoothness / 20
     rbf_matrix = np.exp(-0.5 * np.square((x - centers) / stds))
     return rbf_matrix
 
