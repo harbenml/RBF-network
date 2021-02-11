@@ -1,6 +1,9 @@
+from typing import TYPE_CHECKING
+
 import numpy as np
 
-from model import RBFParameters
+if TYPE_CHECKING:
+    from model import RBFParameters
 
 
 def calculate_rbf(x: np.ndarray, params: RBFParameters) -> np.ndarray:
